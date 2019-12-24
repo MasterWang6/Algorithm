@@ -32,4 +32,30 @@ class Solution {
         }
         return result;
     }
+    
+    class Solution 1{
+        public List<List<Integer>> levelOrderBottom(TreeNode root) {
+            LinkedList<List<Integer>> temp = new LinkedList();
+            traLevel(temp,0,root);
+            LinkedList<List<Integer>> result = new LinkedList();
+            for(int i=temp.size()-1;i>=0;i--){
+                result.add(temp.get(i));
+            }
+            return result;
+        }
+
+        void traLevel(LinkedList<List<Integer>> result,int level,TreeNode node){
+            if(node==null)
+                return;
+            if(result.size() == level){
+                List<Integer> list = new LinkedList<>();
+                list.add(node.val);
+                result.add(list);
+            }else{
+                result.get(level).add(node.val);
+            }
+            traLevel(result,level+1,node.left);
+            traLevel(result,level+1,node.right);
+        }
+    }
 }
